@@ -1,0 +1,33 @@
+.app-header {
+    width: 100%;
+    position: relative;
+    font-size: 18px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.14),0 3px 4px 0 rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2)!important;
+    
+    .inside-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 150px;
+        
+        .nav-links {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            padding: 5px;
+            a {
+                
+                &:hover {
+                    color:rgb(255, 119, 0);
+                }
+            }
+        }
+        .logo {
+            display: flex;
+            align-self: center;
+            width: 180px;
+            height: 120px;
+            position: fixed;
+        }
+    }
+}
