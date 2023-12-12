@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 export function HeaderCategories() {
     return (
         <section className="header-categories">
-            <NavLink> כל המוצרים </NavLink> |
+            <NavLink to={'/categories'}> כל המוצרים </NavLink> |
             <NavLink> אלבומים </NavLink> |
             <NavLink> מסגרות </NavLink> |
             <NavLink> ציוד צילום </NavLink> |

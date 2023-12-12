@@ -1,6 +1,6 @@
 
 export const SET_BOARD = 'SET_BOARD'
-export const SET_BOARDS = 'SET_ITEMS'
+export const SET_ITEMS = 'SET_ITEMS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
@@ -24,7 +24,7 @@ export function itemReducer(state = initialState, action) {
     let item
     let currBoard
     switch (action.type) {
-        case SET_BOARDS:
+        case SET_ITEMS:
             newState = { ...state, items: action.items }
             // console.log('newstate:', newState.boards);
             break

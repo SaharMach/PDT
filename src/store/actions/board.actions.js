@@ -26,9 +26,9 @@ export function getActionUpdateBoard(board) {
     }
 }
 
-export async function loadItems(category) {
+export async function loadItems() {
     try {
-        const items = await itemService.query(category);
+        const items = await itemService.query();
         // console.log('Boards loaded:', boards);
 
         

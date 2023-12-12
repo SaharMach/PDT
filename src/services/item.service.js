@@ -2,7 +2,7 @@
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
-import { socketService } from './socket.service.js'
+// import { socketService } from './socket.service.js'
 
 
 const BASE_URL = 'item/'
@@ -10,7 +10,8 @@ export const itemService = {
     query,
     getById,
     save,
-    remove
+    remove,
+    getCategories
  
 }
 
@@ -19,7 +20,8 @@ window.bs = itemService
 
 async function query() {
 
-    let items = await httpService.get(BASE_URL)
+    return httpService.get(BASE_URL)
+    // console.log('items: from query', items)
     // let user = userService.getLoggedinUser()
     // if (user) {
     //     if (user.username !== 'Guest') {
@@ -32,10 +34,10 @@ async function query() {
     //     console.log('No user provided, no boards will be filtered.');
     // }
     // console.log('boards: from load', boards)
-    return items
+    // return items
 }
 
-function getById(boardId) {
+async function getById(boardId) {
     return httpService.get(BASE_URL + boardId)
 }
 
@@ -53,6 +55,22 @@ async function save(board) {
         const updatedBoard = await httpService.post(BASE_URL, board)
         return updatedBoard
     }
+}
+
+
+function getCategories(items) {
+    console.log('entered getCategories', items);
+
+    const categoriesMap = items.reduce((acc, item) => {
+        const categoryName = item["שם קבוצה"];
+        if (!acc[categoryName]) {
+            acc[categoryName] = [];
+        }
+        acc[categoryName].push(item);
+        return acc;
+    }, {});
+
+    return categoriesMap;
 }
 
 

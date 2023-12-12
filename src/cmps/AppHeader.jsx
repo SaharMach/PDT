@@ -1,8 +1,14 @@
 import logo from '../assets/imgs/logo.png'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { HeaderCategories } from './HeaderCategories'
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { loadItems } from "../store/actions/board.actions";
+import { itemService } from "../services/item.service";
 
 export function AppHeader() {
+
+
 
     return <div className="app-header">
 

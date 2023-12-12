@@ -1,0 +1,36 @@
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 20px;
+    height: max-content;
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      .category-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+  
+      .category-image {
+        width: 100%;
+        height: 150px;
+        background-color: #eee; 
+        margin-bottom: 10px;
+      }
+  
+    }
+  }
+  
