@@ -17,6 +17,7 @@
   
       &:hover {
         transform: translateY(-5px);
+        // transform: scale(1.2em);
       }
   
       .category-title {
@@ -31,6 +32,9 @@
         margin-bottom: 10px;
       }
   
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
   

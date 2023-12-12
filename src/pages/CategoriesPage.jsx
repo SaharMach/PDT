@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react";
 import { itemService } from "../services/item.service";
 import { loadItems } from '../store/actions/board.actions';
+import { useNavigate, useParams } from "react-router"
 
 export function CategoriesPage() {
     const items = useSelector(storeState => storeState.itemModule.items)
     const [categories, setCategories] = useState([])
+    const navigate = useNavigate()
 
 
     // useEffect(() => {
@@ -48,15 +50,20 @@ export function CategoriesPage() {
 
     //     setCategories(newCategories);
     // }
+    function navigateToCategory(categoryName) {
+        const encodedName = encodeURIComponent(categoryName);
+        console.log(encodedName);
+        navigate(`/categories/${encodedName}`);
+    }
+
     if (!categories) return <div>Loading...</div>
     return (
         <div className="categories-container inside-section">
             {Object.keys(categories).map(key => {
-                return <div key={key} className="category-card">
+                return <div key={key} className="category-card" onClick={() => navigateToCategory(key)}>
                     <div className="category-image">
                     </div>
                     <div className="category-title">{key}</div>
-
                 </div>
             })}
         </div>
