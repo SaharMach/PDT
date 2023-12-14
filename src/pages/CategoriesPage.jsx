@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react";
 import { itemService } from "../services/item.service";
-import { loadItems } from '../store/actions/board.actions';
+import { loadItems } from '../store/actions/item.actions';
 import { useNavigate, useParams } from "react-router"
 
 export function CategoriesPage() {

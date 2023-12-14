@@ -1,5 +1,5 @@
 
-export const SET_BOARD = 'SET_BOARD'
+export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_ITEMS = 'SET_ITEMS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
@@ -15,6 +15,7 @@ const initialState = {
     items: [],
     item: {},
     lastRemovedItem: null,
+    category: []
 }
 
 export function itemReducer(state = initialState, action) {
@@ -58,8 +59,8 @@ export function itemReducer(state = initialState, action) {
         //     const updatedStarredBoards = state.starredBoards.filter(starredBoard => starredBoard._id !== action.board._id)
         //     newState = { ...state, starredBoards: updatedStarredBoards }
         //     break
-        case SET_BOARD:
-            newState = { ...state, board: action.board }
+        case SET_CATEGORY:
+            newState = { ...state, category: action.category }
             break
         default:
     }

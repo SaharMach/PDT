@@ -3,12 +3,20 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { HeaderCategories } from './HeaderCategories'
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { loadItems } from "../store/actions/board.actions";
+import { loadItems } from "../store/actions/item.actions";
 import { itemService } from "../services/item.service";
-
 export function AppHeader() {
+    const items = useSelector(storeState => storeState.itemModule.items)
 
+    useEffect(() => {
+        if (items.length === 0) {
+            init()
+        }
+    }, [items])
 
+    async function init() {
+        await loadItems()
+    }
 
     return <div className="app-header">
 

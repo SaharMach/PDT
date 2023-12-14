@@ -1,6 +1,6 @@
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import {  SET_ITEMS } from "../reducers/item.reducer.js";
+import {  SET_ITEMS, SET_CATEGORY } from "../reducers/item.reducer.js";
 // import { taskService } from "../../services/task.service.local.js";
 // import { SOCKET_EMIT_UPDATE_BOARD, socketService } from "../../services/socket.service.js";
 import { itemService } from '../../services/item.service.js';
@@ -54,17 +54,29 @@ export async function loadItems() {
 }
 
 
-export async function loadBoard(boardId) {
-    try {
-        const board = await boardService.getById(boardId)
-        store.dispatch({ type: SET_BOARD, board })
-        return board
-    }
-    catch {
-        console.log('cannot load board:', err)
-        throw err
-    }
-}
+// export async function loadCategoryItems(categoryName) {
+//     try {
+//         const category = itemService.getById(categoryName)
+//         store.dispatch({ type: SET_CATEGORY, category })
+//         return category
+//     }
+//     catch {
+//         console.log('cannot load board:', err)
+//         throw err
+//     }
+// }
+
+// export async function loadBoard(boardId) {
+//     try {
+//         const board = await boardService.getById(boardId)
+//         store.dispatch({ type: SET_BOARD, board })
+//         return board
+//     }
+//     catch {
+//         console.log('cannot load board:', err)
+//         throw err
+//     }
+// }
 
 export async function removeBoard(boardId) {
     try {
