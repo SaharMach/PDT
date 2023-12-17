@@ -3,27 +3,30 @@ import { useEffect, useState } from "react";
 import { itemService } from "../services/item.service";
 import { loadItems } from '../store/actions/item.actions';
 import { useNavigate, useParams } from "react-router"
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export function CategoriesPage() {
     const items = useSelector(storeState => storeState.itemModule.items)
     const [categories, setCategories] = useState([])
     const navigate = useNavigate()
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        responsive: [
 
-    // useEffect(() => {
-    //     console.log('from cate page', items);
-    //     if (!items)
-    //         loadCategories()
-    // }, [])
-
-
+            // ... more breakpoints if needed ...
+        ]
+    };
 
     useEffect(() => {
         init()
-        // loadCategories()
     }, [])
-
-
 
     async function init() {
         try {
@@ -39,17 +42,6 @@ export function CategoriesPage() {
         setCategories(categoriesToSave)
     }
 
-    // function getCategories() {
-    //     const newCategories = items.reduce((acc, item) => {
-    //         const categoryName = item["שם קבוצה"];
-    //         if (!acc.includes(categoryName)) {
-    //             acc.push(categoryName);
-    //         }
-    //         return acc;
-    //     }, []);
-
-    //     setCategories(newCategories);
-    // }
     function navigateToCategory(categoryName) {
         const encodedName = encodeURIComponent(categoryName);
         console.log(encodedName);
@@ -58,14 +50,17 @@ export function CategoriesPage() {
 
     if (!categories) return <div>Loading...</div>
     return (
-        <div className="categories-container inside-section">
-            {Object.keys(categories).map(key => {
-                return <div key={key} className="category-card" onClick={() => navigateToCategory(key)}>
-                    <div className="category-image">
-                    </div>
-                    <div className="category-title">{key}</div>
-                </div>
-            })}
+        <div className="categories inside-section">
+            <Slider {...settings}>
+                {Object.keys(categories).map(key => (
+                    <section className='categories-container'>
+                        <div key={key} className="category-card" onClick={() => navigateToCategory(key)}>
+                            <div className="category-image"></div>
+                            <div className="category-title">{key}</div>
+                        </div>
+                    </section>
+                ))}
+            </Slider>
         </div>
     );
 
