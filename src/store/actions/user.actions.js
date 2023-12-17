@@ -1,26 +1,26 @@
 import { userService } from "../../services/user.service.js";
-import { socketService } from "../../services/socket.service.js";
+// import { socketService } from "../../services/socket.service.js";
 import { store } from '../store.js'
 
 import { showErrorMsg } from '../../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "../reducers/system.reducer.js";
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer.js";
-import { SET_BOARDS } from "../reducers/board.reducer.js";
+// import { SET_BOARDS } from "../reducers/board.reducer.js";
 
-export async function loadUsers() {
-    try {
-        // store.dispatch({ type: LOADING_START })
-        const users = await userService.getUsers()
-        // console.log('users:', users)
-        store.dispatch({ type: SET_USERS, users })
-        return users
-    } catch (err) {
-        console.log('UserActions: err in loadUsers', err)
-    }
-    // } finally {
-    //     store.dispatch({ type: LOADING_DONE })
-    // }
-}
+// export async function loadUsers() {
+//     try {
+//         // store.dispatch({ type: LOADING_START })
+//         const users = await userService.getUsers()
+//         // console.log('users:', users)
+//         store.dispatch({ type: SET_USERS, users })
+//         return users
+//     } catch (err) {
+//         console.log('UserActions: err in loadUsers', err)
+//     }
+//     // } finally {
+//     //     store.dispatch({ type: LOADING_DONE })
+//     // }
+// }
 
 export async function removeUser(userId) {
     try {
@@ -70,10 +70,10 @@ export async function logout() {
             type: SET_USER,
             user: null
         })
-        store.dispatch({
-            type: SET_BOARDS,
-            boards: []
-        })
+        // store.dispatch({
+        //     type: SET_BOARDS,
+        //     boards: []
+        // })
         // socketService.logout()
     } catch (err) {
         console.log('Cannot logout', err)

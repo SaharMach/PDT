@@ -4,17 +4,16 @@ import { HeaderCategories } from './HeaderCategories'
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { loadItems } from "../store/actions/item.actions";
-import { itemService } from "../services/item.service";
 import { appHeaderSvg } from './Svgs';
 import { useForm } from '../customHooks/useForm';
-
+import { logout } from '../store/actions/user.actions';
 import { ItemsFilter } from './ItemsFilter';
-import { utilService } from '../services/util.service';
 export function AppHeader() {
     const items = useSelector(storeState => storeState.itemModule.items)
     const [toggleFilter, setToggleFilter] = useState(false)
     const [fields, setFields, handleChange] = useForm({ name: '' });
-
+    const user = useSelector(storeState => storeState.userModule.user)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (items.length === 0 || fields.name) {
@@ -62,6 +61,8 @@ export function AppHeader() {
                     <div onClick={() => setToggleFilter(!toggleFilter)}>
                         {appHeaderSvg.search}
                     </div>
+                    {user && <div onClick={logout}>Logout</div>}
+                    {!user && <div onClick={() => navigate('/signup')}>התחבר</div>}
                     {/* <label>
                             Subscribe to Newsletter:
                             <input
