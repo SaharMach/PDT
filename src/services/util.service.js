@@ -77,7 +77,8 @@ function randomPastTime() {
     return Date.now() - pastTime
 }
 
-function debounce(func, timeout = 300) {
+function debounce(func, timeout = 5000) {
+    console.log('timeout:', timeout)
     let timer
     return (...args) => {
         clearTimeout(timer)
