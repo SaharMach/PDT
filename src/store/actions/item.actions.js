@@ -26,9 +26,10 @@ export function getActionUpdateBoard(board) {
     }
 }
 
-export async function loadItems() {
+export async function loadItems(filterBy = {}) {
+    console.log('filterBy:', filterBy)
     try {
-        const items = await itemService.query();
+        const items = await itemService.query(filterBy);
         // console.log('Boards loaded:', boards);
 
         

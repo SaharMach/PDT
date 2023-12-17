@@ -5,21 +5,27 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { loadItems } from "../store/actions/item.actions";
 import { itemService } from "../services/item.service";
+import { appHeaderSvg } from './Svgs';
 import { useForm } from '../customHooks/useForm';
-import { utilService } from '../services/util.service';
 
+import { ItemsFilter } from './ItemsFilter';
+import { utilService } from '../services/util.service';
 export function AppHeader() {
     const items = useSelector(storeState => storeState.itemModule.items)
+    const [toggleFilter, setToggleFilter] = useState(false)
     const [fields, setFields, handleChange] = useForm({ name: '' });
 
+
     useEffect(() => {
-        if (items.length === 0) {
+        if (items.length === 0 || fields.name) {
             init()
         }
-    }, [items])
+    }, [fields.name])
+
+
 
     async function init() {
-        await loadItems()
+        await loadItems(fields.name)
     }
 
     // const handleSubmit = (event) => {
@@ -30,9 +36,14 @@ export function AppHeader() {
     // };
 
     // const debouncedHandleSearch = debounce(handleSearch, 300)
-    console.log(fields);
     return <div className="app-header">
-
+        {toggleFilter &&
+            < ItemsFilter
+                items={items}
+                setToggleFilter={setToggleFilter}
+                fields={fields}
+                handleChange={handleChange}
+            />}
         <div className="inside-section">
             <section className='nav-links'>
                 <article className='app-header-site'>
@@ -41,14 +52,16 @@ export function AppHeader() {
                     </NavLink> |
                     {/* <NavLink to={"/cart"} > חיפוש </NavLink> */}
                     {/* <form onSubmit={handleSubmit}> */}
-                    <input
+                    {/* <input
                         type="text"
                         name="name"
                         value={fields.name}
                         onChange={handleChange}
                         placeholder="Name"
-                    />
-
+                    /> */}
+                    <div onClick={() => setToggleFilter(!toggleFilter)}>
+                        {appHeaderSvg.search}
+                    </div>
                     {/* <label>
                             Subscribe to Newsletter:
                             <input

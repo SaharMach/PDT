@@ -18,9 +18,14 @@ export const itemService = {
 window.bs = itemService
 
 
-async function query() {
-
-    return httpService.get(BASE_URL)
+async function query(filterBy = {}) {
+    console.log('entered query')
+    // return httpService.get(BASE_URL)
+    let items = await httpService.get(BASE_URL)
+    if(filterBy && Array.isArray(items)) {
+        const regExp = new RegExp(filterBy, 'i')
+        items = items.filter(item => regExp.test(item["תאור פריט"])) 
+    }
     // console.log('items: from query', items)
     // let user = userService.getLoggedinUser()
     // if (user) {
@@ -34,7 +39,7 @@ async function query() {
     //     console.log('No user provided, no boards will be filtered.');
     // }
     // console.log('boards: from load', boards)
-    // return items
+    return items
 }
 
 async function getById(boardId) {

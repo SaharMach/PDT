@@ -77,13 +77,12 @@ function randomPastTime() {
     return Date.now() - pastTime
 }
 
-function debounce(func, timeout = 5000) {
-    console.log('timeout:', timeout)
-    let timer
-    return (...args) => {
-        clearTimeout(timer)
-        timer = setTimeout(() => { func.apply(this, args) }, timeout)
-    }
+export function debounce(func, delay) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+    };
 }
 
 function saveToStorage(key, value) {

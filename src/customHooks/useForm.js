@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { utilService } from "../services/util.service"
-
+import { debounce } from "../services/util.service";
 export const useForm = (initialState) => {
     const [fields, setFields] = useState(initialState);
 
@@ -22,7 +21,6 @@ export const useForm = (initialState) => {
         setFields((prevFields) => ({ ...prevFields, [field]: value }));
     }
 
-    // const debouncedHandleChange = utilService.debounce(handleChange, 400);
 
     return [fields, setFields, handleChange];
 }
