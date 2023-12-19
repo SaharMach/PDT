@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadItems } from '../store/actions/item.actions';
 import { useEffect, useState } from 'react';
-
+import { ItemList } from '../cmps/ItemList';
 export function CategoryPage() {
     let { categoryName } = useParams();
     const dispatch = useDispatch();
@@ -30,6 +30,10 @@ export function CategoryPage() {
     if (!items) return <div>Loading...</div>
 
     return (
-        <pre>{JSON.stringify(currCategoryItems, null, 2) || null}</pre>
+        <div>
+            {/* <pre>{JSON.stringify(currCategoryItems, null, 2) || null}</pre> */}
+            <ItemList currCategoryItems={currCategoryItems} />
+
+        </div>
     );
 }

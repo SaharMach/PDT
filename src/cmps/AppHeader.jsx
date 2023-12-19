@@ -14,7 +14,7 @@ export function AppHeader() {
     const [fields, setFields, handleChange] = useForm({ name: '' });
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
-
+    console.log(user, 'from app header');
     useEffect(() => {
         if (items.length === 0 || fields.name) {
             init()
@@ -61,8 +61,16 @@ export function AppHeader() {
                     <div onClick={() => setToggleFilter(!toggleFilter)}>
                         {appHeaderSvg.search}
                     </div>
-                    {user && <div onClick={logout}>Logout</div>}
-                    {!user && <div onClick={() => navigate('/signup')}>התחבר</div>}
+                    {user ?
+                        <div >
+                            שלום, {user.username}
+                            <span onClick={logout}>Logout</span>
+                        </div>
+                        :
+                        <div onClick={() => navigate('/signup')}>
+                            התחבר
+                        </div>
+                    }
                     {/* <label>
                             Subscribe to Newsletter:
                             <input
