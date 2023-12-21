@@ -64,7 +64,7 @@ export function LoginSignup() {
         <div className="login-page-container flex justify-center">
             <div className='login-page'>
                 <div className='login-page-titles'>
-                    <p className='logo'>FELLOW</p>
+                    <p className='logo'>PDT</p>
                     <p className='welcome-title'>{isSignup ? 'Sign up' : 'Log in'} to continue</p>
                 </div>
                 <form className="login-page-form" onSubmit={onConnect}>
@@ -108,10 +108,10 @@ export function LoginSignup() {
                 </div>
             </div>
             <footer className='login-footer'>
-                <div className='footer-imgs'>
+                {/* <div className='footer-imgs'>
                     <img className='right-img' src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.505/trello-right.3ee60d6f.svg" alt="" />
                     <img className='left-img' src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.505/trello-left.4f52d13c.svg" alt="" />
-                </div>
+                </div> */}
             </footer>
         </div>
     )

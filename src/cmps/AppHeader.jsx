@@ -8,6 +8,8 @@ import { appHeaderSvg } from './Svgs';
 import { useForm } from '../customHooks/useForm';
 import { logout } from '../store/actions/user.actions';
 import { ItemsFilter } from './ItemsFilter';
+import { cartSvg } from './Svgs';
+
 export function AppHeader() {
     const items = useSelector(storeState => storeState.itemModule.items)
     const [toggleFilter, setToggleFilter] = useState(false)
@@ -46,9 +48,9 @@ export function AppHeader() {
         <div className="inside-section">
             <section className='nav-links'>
                 <article className='app-header-site'>
-                    <NavLink to={"/about"} >
+                    {/* <NavLink to={"/about"} >
                         כל המוצרים
-                    </NavLink> |
+                    </NavLink> | */}
                     {/* <NavLink to={"/cart"} > חיפוש </NavLink> */}
                     {/* <form onSubmit={handleSubmit}> */}
                     {/* <input
@@ -61,16 +63,7 @@ export function AppHeader() {
                     <div onClick={() => setToggleFilter(!toggleFilter)}>
                         {appHeaderSvg.search}
                     </div>
-                    {user ?
-                        <div >
-                            שלום, {user.username}
-                            <span onClick={logout}>Logout</span>
-                        </div>
-                        :
-                        <div onClick={() => navigate('/signup')}>
-                            התחבר
-                        </div>
-                    }
+
                     {/* <label>
                             Subscribe to Newsletter:
                             <input
@@ -84,8 +77,18 @@ export function AppHeader() {
                     {/* </form> */}
                 </article>
                 <article className='app-header-user'>
-                    <NavLink to={"/cart"} > עגלה </NavLink> |
-                    <NavLink to={"/about"} > עלינו </NavLink>
+                    <NavLink to={"/cart"} > <span className='cart-logo'>{cartSvg.cart}</span> </NavLink> |
+                    <NavLink to={"/about"} > עלינו </NavLink> |
+                    {user ?
+                        <div >
+                            שלום, {user.username}
+                            <span onClick={logout}>Logout</span>
+                        </div>
+                        :
+                        <div onClick={() => navigate('/signup')}>
+                            התחבר
+                        </div>
+                    }
                 </article>
             </section>
             <NavLink className='logo' to={"/"}>

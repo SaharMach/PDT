@@ -42,8 +42,8 @@ async function query(filterBy = {}) {
     return items
 }
 
-async function getById(boardId) {
-    return httpService.get(BASE_URL + boardId)
+async function getById(itemId) {
+    return httpService.get(BASE_URL + itemId)
 }
 
 async function remove(boardId) {

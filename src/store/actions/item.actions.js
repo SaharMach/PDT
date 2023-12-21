@@ -1,10 +1,9 @@
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import {  SET_ITEMS, SET_CATEGORY } from "../reducers/item.reducer.js";
+import {  SET_ITEMS, SET_ITEM, RESET_ITEM } from "../reducers/item.reducer.js";
 // import { taskService } from "../../services/task.service.local.js";
 // import { SOCKET_EMIT_UPDATE_BOARD, socketService } from "../../services/socket.service.js";
 import { itemService } from '../../services/item.service.js';
-
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
     return {
@@ -30,19 +29,6 @@ export async function loadItems(filterBy = {}) {
     console.log('filterBy:', filterBy)
     try {
         const items = await itemService.query(filterBy);
-        // console.log('Boards loaded:', boards);
-
-        
-        // if (user) {
-        //     if (user.username !== 'Guest') {
-        //         filteredBoards = boards.filter(board =>
-        //             board.members.some(boardMember => boardMember._id === user._id)
-        //         )
-        //     }
-        // } else {
-        //     console.log('No user provided, no boards will be filtered.');
-        // }
-
         store.dispatch({
             type: SET_ITEMS,
             items: items
@@ -54,40 +40,35 @@ export async function loadItems(filterBy = {}) {
     }
 }
 
-
-// export async function loadCategoryItems(categoryName) {
-//     try {
-//         const category = itemService.getById(categoryName)
-//         store.dispatch({ type: SET_CATEGORY, category })
-//         return category
-//     }
-//     catch {
-//         console.log('cannot load board:', err)
-//         throw err
-//     }
-// }
-
-// export async function loadBoard(boardId) {
-//     try {
-//         const board = await boardService.getById(boardId)
-//         store.dispatch({ type: SET_BOARD, board })
-//         return board
-//     }
-//     catch {
-//         console.log('cannot load board:', err)
-//         throw err
-//     }
-// }
-
-export async function removeBoard(boardId) {
+export async function loadItem(itemId) {
     try {
-        await boardService.remove(boardId)
-        store.dispatch(getActionRemoveBoard(boardId))
-    } catch (err) {
-        console.log('Cannot remove board', err)
+        const item = await itemService.getById(itemId)
+        store.dispatch({ type: SET_ITEM, item })
+        return item
+    }
+    catch {
+        console.log('cannot load item:', err)
         throw err
     }
 }
+
+export function resetItem() {
+    try {
+        store.dispatch({type: RESET_ITEM})
+    } catch (err) {
+        console.log(err, 'couldnt reset item');
+        throw err
+    }
+}
+// export async function removeBoard(boardId) {
+//     try {
+//         await boardService.remove(boardId)
+//         store.dispatch(getActionRemoveBoard(boardId))
+//     } catch (err) {
+//         console.log('Cannot remove board', err)
+//         throw err
+//     }
+// }
 
 
 

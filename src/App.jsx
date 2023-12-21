@@ -5,6 +5,7 @@ import { AppHeader } from './cmps/AppHeader';
 import { CategoriesPage } from './pages/CategoriesPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { LoginSignup } from './pages/LoginPage';
+import { ItemDetails } from './pages/ItemDetails';
 export function App() {
   return (
     <main dir="rtl">
@@ -15,6 +16,7 @@ export function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/categories' element={<CategoriesPage />} />
         <Route path='/signup' element={<LoginSignup />} />
+        <Route path='/products/:itemId' element={<ItemDetails />} />
       </Routes>
     </main>
   );

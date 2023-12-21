@@ -1,7 +1,6 @@
 import { ItemPreview } from "./ItemPreview";
 
 export function ItemList({ currCategoryItems }) {
-    console.log('from itemslist', currCategoryItems);
 
     return (
         <section>

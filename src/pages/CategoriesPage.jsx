@@ -53,8 +53,8 @@ export function CategoriesPage() {
         <div className="categories inside-section">
             <Slider {...settings}>
                 {Object.keys(categories).map(key => (
-                    <section className='categories-container'>
-                        <div key={key} className="category-card" onClick={() => navigateToCategory(key)}>
+                    <section key={key} className='categories-container'>
+                        <div className="category-card" onClick={() => navigateToCategory(key)}>
                             <div className="category-image"></div>
                             <div className="category-title">{key}</div>
                         </div>

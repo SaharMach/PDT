@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router"
+import { NavLink } from "react-router-dom"
 export function ItemPreview({ item }) {
-    console.log('item', item["תאור פריט"]);
+    const navigate = useNavigate()
+
     return (
-        <div>
+
+        <div onClick={() => navigate(`/products/${item._id}`)}>
             {item["תאור פריט"]}
         </div>
+
     )
 }
