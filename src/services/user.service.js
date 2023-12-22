@@ -14,17 +14,12 @@ export const userService = {
     getUsers,
     getById,
     remove,
-    // update,
+    update,
     // changeScore
 }
 
 window.userService = userService
-// const usersStorage = [
-//     { _id: 'r101', username: 'Reut', password: '0000', fullname: 'Reut Edry', imgUrl: "https://res.cloudinary.com/dpwmxprpp/image/upload/v1696367856/WhatsApp_Image_2023-10-04_at_00.17.06_fd94b6.jpg" },
-//     { _id: 's101', username: 'Sahar', password: '1234', fullname: 'Sahar Machpud', imgUrl: "https://res.cloudinary.com/dpwmxprpp/image/upload/v1696367658/1642589384427_hywpod.jpg" },
-//     { _id: 'm101', username: 'Maya', password: '1234', fullname: 'Maya Cohen', imgUrl: "https://res.cloudinary.com/dpwmxprpp/image/upload/v1696367862/WhatsApp_Image_2023-10-04_at_00.10.22_fkybop.jpg" },
-//     { _id: 'guest', username: 'Guest', password: '1234', fullname: 'Guest', imgUrl: "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg" },
-// ]
+
 
 
 async function getUsers() {
@@ -73,7 +68,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    // if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     // const user = await storageService.post(STORAGE_KEY, userCred)
     try {
         const user = await httpService.post('auth/signup', userCred)
@@ -88,18 +83,16 @@ async function logout() {
     return await httpService.post('auth/logout')
 }
 
-// async function changeScore(by) {
-//     const user = getLoggedinUser()
-//     if (!user) throw new Error('Not loggedin')
-//     user.score = user.score + by || by
-//     await update(user)
-//     return user.score
-// }
+async function update(user) {
+    const updatedUser = await httpService.put(`user/${user._id}`, user)
+    if(user._id === updatedUser._id) saveLocalUser(user)
+    return user
+}
 
 
 function saveLocalUser(user) {
     // console.log('save local user');
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, username: user.username }
+    user = { _id: user._id, fullname: user.fullname, email: user.email, cart: user.cart, username: user.username }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }

@@ -19,8 +19,6 @@ export function CategoriesPage() {
         slidesToShow: 4,
         slidesToScroll: 4,
         responsive: [
-
-            // ... more breakpoints if needed ...
         ]
     };
 

@@ -4,12 +4,12 @@ import { signup, login } from '../store/actions/user.actions'
 import { useNavigate } from 'react-router'
 
 export function LoginSignup() {
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '', email: '', cart: [] })
     const [isSignup, setIsSignup] = useState(false)
     const navigate = useNavigate()
 
     function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
+        setCredentials({ username: '', password: '', fullname: '', email: '', cart: [] })
         setIsSignup(false)
     }
 
@@ -46,7 +46,7 @@ export function LoginSignup() {
     async function onConnectAsAUser() {
         try {
             await login({ username: 'Guest', password: "1234" })
-            navigate('/workspace')
+            // navigate('/workspace')
         } catch (err) {
             console.log('Could not connect as a guest', err);
         }
@@ -56,9 +56,9 @@ export function LoginSignup() {
         setIsSignup(!isSignup)
     }
 
-    function onUploaded(imgUrl) {
-        setCredentials({ ...credentials, imgUrl })
-    }
+    // function onUploaded(imgUrl) {
+    //     setCredentials({ ...credentials, imgUrl })
+    // }
 
     return (
         <div className="login-page-container flex justify-center">
@@ -97,6 +97,13 @@ export function LoginSignup() {
                                     required
                                 />
                                 {/* <ImgUploader onUploaded={onUploaded} /> */}
+                                <input
+                                    type="text"
+                                    name="email"
+                                    placeholder="Enter email"
+                                    onChange={handleChange}
+                                    required
+                                />
                             </>
                         )}
                     <button>{isSignup ? 'Sign up' : 'Continue'}</button>

@@ -63,6 +63,22 @@ export async function signup(credentials) {
     }
 }
 
+export async function update(userToSave) {
+    try {
+        const user = await userService.update(userToSave)
+        store.dispatch({
+            type: SET_USER,
+            user
+        })
+        console.log('user from action', user);
+        // socketService.login(user)
+        return user
+    } catch (err) {
+        console.log('Cannot signup', err)
+        throw err
+    }
+}
+
 export async function logout() {
     try {
         await userService.logout()
