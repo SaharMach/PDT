@@ -11,6 +11,6 @@ export function CartIndex() {
     let { cart } = user
     console.log('cart', cart);
     return (
-        <div>Here</div>
+        <pre>{JSON.stringify(user.cart, null, 2) || null}</pre>
     )
 }
