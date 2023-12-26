@@ -37,13 +37,21 @@
         align-items: center;
         div {
             cursor: pointer;
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
+            // display: flex;
+            // width: 100%;
+            // justify-content: space-between;
             &:hover {
                 color:rgb(255, 119, 0);
+            }   
+        }
+        .cart-container {
+            position: relative;
+           
+            &-num {
+                position: absolute;
+                right:-5px;
+                bottom: -10px;
             }
-            
         }
     }
 }

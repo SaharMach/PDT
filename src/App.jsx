@@ -6,7 +6,7 @@ import { CategoriesPage } from './pages/CategoriesPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { LoginSignup } from './pages/LoginPage';
 import { ItemDetails } from './pages/ItemDetails';
-import { CartIndex } from './cmps/CartIndex';
+import { CartIndex } from './pages/CartIndex';
 export function App() {
   return (
     <main dir="rtl">

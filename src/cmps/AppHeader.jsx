@@ -77,7 +77,13 @@ export function AppHeader() {
                     {/* </form> */}
                 </article>
                 <article className='app-header-user'>
-                    <NavLink to={"/cart"} > <span className='cart-logo'>{cartSvg.cart}</span> </NavLink> |
+                    <div className='cart-container'>
+                        <NavLink to={"/cart"}>
+                            <span className='cart-logo'>{cartSvg.cart}</span>
+                            {user && <span className='cart-container-num' >{user.cart.length}</span>}
+                        </NavLink>
+                    </div>
+                    |
                     <NavLink to={"/about"} > עלינו </NavLink> |
                     {user ?
                         <div >
