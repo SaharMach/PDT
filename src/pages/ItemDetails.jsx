@@ -29,20 +29,32 @@ export function ItemDetails() {
     }
 
     async function addToCart() {
-        if (!user) return alert('cant for now')
-        try {
-            const updatedCart = user.cart ? [...user.cart, item] : [item]
-            let userToUpdate = { ...user, cart: updatedCart };
+        if (!user) return alert('Please log in to add items to the cart');
 
-            console.log(userToUpdate.cart);
-            await update(userToUpdate)
-            console.log(user.cart, ' from add to carttTTTTTTTTTT');
+        try {
+            let alreadyInCart = false;
+            const updatedCart = user.cart ? user.cart.map(cartItem => {
+                if (cartItem._id === item._id) {
+                    alreadyInCart = true;
+                    return { ...cartItem, quantity: (cartItem.quantity || 1) + 1 };
+                } else {
+                    return cartItem;
+                }
+            }) : [];
+
+            if (!alreadyInCart) {
+                updatedCart.push({ ...item, quantity: 1 });
+            }
+            let userToUpdate = { ...user, cart: updatedCart };
+            await update(userToUpdate);
+            console.log(user.cart, ' from add to cart');
 
         } catch (err) {
-            console.log('couldnt add to cart')
-            throw err
+            console.log('Couldn\'t add to cart', err);
+            throw err;
         }
     }
+
 
 
     // async function addToCart(item) {

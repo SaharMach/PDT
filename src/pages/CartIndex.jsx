@@ -18,8 +18,18 @@ export function CartIndex() {
         console.log(userToUpdate);
         await update(userToUpdate)
     }
+
+    async function onUpdateQuantity(itemId, newQuantity) {
+        if (newQuantity === 0) return
+        let updatedCart = cart.map(item =>
+            item._id === itemId ? { ...item, quantity: newQuantity } : item
+        );
+        let userToUpdate = { ...user, cart: updatedCart };
+        await update(userToUpdate);
+    }
+
     return (
         // <pre>{JSON.stringify(user.cart, null, 2) || null}</pre>
-        <CartList list={user.cart} onDeleteItem={onDeleteItem} />
+        <CartList list={user.cart} onDeleteItem={onDeleteItem} onUpdateQuantity={onUpdateQuantity} />
     )
 }
