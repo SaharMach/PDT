@@ -1,5 +1,9 @@
 .categories {
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 50px;
   .categories-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -39,5 +43,12 @@
       cursor: pointer;
     }
   }
-  
+  .slick-slider {
+    button {
+
+    }
+    .slick-prev:before, .slick-next:before {
+        color: rgb(177, 177, 177);
+    }
+}
 }
