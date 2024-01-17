@@ -1,20 +1,59 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-// import { loadItems } from "../store/actions/board.actions";
-// import { itemService } from "../services/item.service";
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { NextArrow, PrevArrow } from 'react-slick';
 export function HomePage() {
     // const items = useSelector(storeState => storeState.itemModule.items)
     // const [categories, setCategories] = useState([])
 
 
+    const sales = [
+        {
+            itemId: '1111',
+            itemImg: 'url',
+        },
+        {
+            itemId: '11141',
+            itemImg: 'url',
+        },
+        {
+            itemId: '11211',
+            itemImg: 'url',
+        },
+        {
+            itemId: '111211',
+            itemImg: 'url',
+        },
+        {
+            itemId: '1111231',
+            itemImg: 'url',
+        },
+        {
+            itemId: '1111211',
+            itemImg: 'url',
+        },
+        {
+            itemId: '11312311',
+            itemImg: 'url',
+        },
 
+    ]
 
     // useEffect(() => {
     //     init()
     //     // loadCategories()
     // }, [])
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 5,
 
+    };
 
     // async function init() {
     //     try {
@@ -28,28 +67,24 @@ export function HomePage() {
 
 
 
-    function loadCategories(items) {
-        const categoriesToSave = itemService.getCategories(items)
-        setCategories(categoriesToSave)
-    }
-    function getCategories() {
-        const newCategories = items.reduce((acc, item) => {
-            const categoryName = item["שם קבוצה"];
-            if (!acc.includes(categoryName)) {
-                acc.push(categoryName);
-            }
-            return acc;
-        }, []);
-
-        setCategories(newCategories);
-    }
-
 
     // if (categories.length === 0) return <div>Loading...</div>
     return (
         <section className="home-page">
             <div className="inside-section">
+                <section className="sales">
+                    <Slider {...settings}>
+
+                        {sales.map(sale => {
+                            return <div key={sale.itemId} className="sale">
+                                <section>{sale.itemId}</section>
+                                <span>במבצע</span>
+                            </div>
+                        })}
+                    </Slider >
+                </section>
                 <article className="store-info">
+
                 </article>
             </div>
         </section>
